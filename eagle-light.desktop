@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Eagle Light
+Comment=Eagle Layout Editor
+Comment[pl]=Edytor p³ytek drukowanych Eagle
+Exec=eagle
+Icon=eagle.xpm
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Education;
+InitialPreference=2
+Encoding=UTF-8
+# vi: encoding=utf-8
