@@ -16,6 +16,8 @@ Source0:	ftp://ftp.cadsoft.de/pub/program/%{_ver}/eagle-lin-eng-%{_ver}.tgz
 # Source0-md5:	c9607298d0c7ca1545397f996d14c1e8
 Source1:	%{name}.desktop
 URL:		http://www.cadsoft.de/freeware.htm/
+# arch-dependent binaries MUST NOT be in /usr/share
+BuildRequires:	FHS-fixes
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,11 +30,11 @@ To run Eagle, you need licence key. Freeware Licence key is in:
 /usr/share/eagle-light/bin/
 
 %description -l pl
-Edytor p³ytek drukowanych Eagle Limity:
+Edytor p³ytek drukowanych Eagle. Ograniczenia:
 - Obszar p³ytki jest ograniczony do 100 x 80 mm (4 x 3.2 cale)
-- Tylko dwa sygna³owe warstwy mog± byæ u¿ywane (wierzchnia i spodnia)
+- Tylko dwie sygna³owe warstwy mog± byæ u¿ywane (wierzchnia i spodnia)
 - Edytor schematów mo¿e stworzyæ jeden arkusz
-Aby uruchomic Eagle, potrzebujesz klucz licencyjny. Klucz licencyjny
+Aby uruchomic Eagle, potrzebny jest klucz licencyjny. Klucz licencyjny
 Freeware znajduje siê w katalogu:
 /usr/share/eagle-light/bin/
 
@@ -46,9 +48,10 @@ install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{bin,cam,dru,lbr,projects/examples
 	$RPM_BUILD_ROOT%{_bindir} \
 	$RPM_BUILD_ROOT%{_pixmapsdir} \
 	$RPM_BUILD_ROOT%{_desktopdir}
-mv man/eagle.1 $RPM_BUILD_ROOT%{_mandir}/man1
-#mv bin/eagle $RPM_BUILD_ROOT%{_bindir}/eagle
-mv bin/eagle.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
+
+install man/eagle.1 $RPM_BUILD_ROOT%{_mandir}/man1
+#install bin/eagle $RPM_BUILD_ROOT%{_bindir}/eagle
+install bin/eagle.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install bin/* $RPM_BUILD_ROOT%{_datadir}/%{name}/bin
 ln -s %{_datadir}/%{name}/bin/eagle $RPM_BUILD_ROOT%{_bindir}/eagle
@@ -63,29 +66,15 @@ install projects/examples/tutorial/* $RPM_BUILD_ROOT%{_datadir}/%{name}/projects
 install scr/* $RPM_BUILD_ROOT%{_datadir}/%{name}/scr
 install ulp/* $RPM_BUILD_ROOT%{_datadir}/%{name}/ulp
 
-
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-umask 022
-if ! grep -qs '^%{_libdir}/%{name}$' /etc/ld.so.conf ; then
-	echo "%{_libdir}/%{name}" >> /etc/ld.so.conf
-fi
-/sbin/ldconfig
-
-%postun
-umask 022
-if [ "$1" = '0' ]; then
-	grep -v '^%{_libdir}/%{name}$' /etc/ld.so.conf > /etc/ld.so.conf.new 2>/dev/null
-	mv -f /etc/ld.so.conf.new /etc/ld.so.conf
-fi
-/sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc doc/UPDATE doc/library.txt README
 %attr(755,root,root) %{_bindir}/*
-%attr(664,root,users) %{_datadir}/%{name}/bin/eagle.key
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/bin
+%{_datadir}/%{name}/bin/eagle.key
 %attr(755,root,root) %{_datadir}/%{name}/bin/eagle
-%{_datadir}/
+...the rest of file listing, not duplicates of previous entries!
