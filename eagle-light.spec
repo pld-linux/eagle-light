@@ -31,7 +31,7 @@ Edytor p³ytek drukowanych Eagle Limity:
 - Tylko dwa sygna³owe warstwy mog± byæ u¿ywane (wierzchnia i spodnia)
 - Edytor schematów mo¿e stworzyæ jeden arkusz
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n eagle-lin-eng-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
