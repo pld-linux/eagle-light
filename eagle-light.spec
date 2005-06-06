@@ -4,17 +4,21 @@
 # - add libraries from homepage
 # - enhance description
 
-%define		_ver	4.13r1
 Summary:	Eagle Layout Editor
 Summary(pl):	Edytor p³ytek drukowanych Eagle
 Name:		eagle-light
-Version:	4.13r1
-Release:	0.2
+Version:	4.14
+Release:	0.1
 License:	Freeware
 Group:		X11/Applications/Science
-Source0:	ftp://ftp.cadsoft.de/pub/program/%{_ver}/eagle-lin-eng-%{_ver}.tgz
-# Source0-md5:	c9607298d0c7ca1545397f996d14c1e8
-Source1:	%{name}.desktop
+Source0:	ftp://ftp.cadsoft.de/pub/program/%{version}/eagle-lin-eng-%{version}.tgz
+# Source0-md5:	b80005f80440f8761b7a284c633d7643
+Source1:	ftp://ftp.cadsoft.de/pub/program/%{version}/manual-eng.pdf
+# Source1-md5:	1e85f214b4229023ec22167ee8c6b485
+Source2:	ftp://ftp.cadsoft.de/pub/program/%{version}/tutorial-eng.pdf
+# Source2-md5:	9ed24f9106432f237d3991c291d95b04
+Source3:        %{name}.desktop
+
 URL:		http://www.cadsoft.de/freeware.htm/
 # arch-dependent binaries MUST NOT be in /usr/share
 BuildRequires:	FHS-fixes
