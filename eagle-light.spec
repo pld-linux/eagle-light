@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/UPDATE doc/library.txt README
 %{_mandir}/*
 %{_pixmapsdir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %attr(755,root,root) %{_eagledir}/bin/eagle
 # I'm not sure that eagle.key should have 665 atributies
 #%attr(665,root,users)
