@@ -7,7 +7,7 @@
 # - Is banner in rpm needed to introduce how to run it?
 
 Summary:	Eagle Layout Editor
-Summary(pl):	Edytor p³ytek drukowanych Eagle
+Summary(pl.UTF-8):   Edytor pÅ‚ytek drukowanych Eagle
 Name:		eagle-light
 Version:	4.15
 Release:	0.1
@@ -34,13 +34,13 @@ Eagle Layout Editor. Limitations:
 To run Eagle, you need licence key. Freeware Licence key is in:
 /usr/share/eagle-light/bin/
 
-%description -l pl
-Edytor p³ytek drukowanych Eagle. Ograniczenia:
-- Obszar p³ytki jest ograniczony do 100 x 80 mm (4 x 3.2 cale)
-- Tylko dwie sygna³owe warstwy mog± byæ u¿ywane (wierzchnia i spodnia)
-- Edytor schematów mo¿e stworzyæ jeden arkusz
+%description -l pl.UTF-8
+Edytor pÅ‚ytek drukowanych Eagle. Ograniczenia:
+- Obszar pÅ‚ytki jest ograniczony do 100 x 80 mm (4 x 3.2 cale)
+- Tylko dwie sygnaÅ‚owe warstwy mogÄ… byÄ‡ uÅ¼ywane (wierzchnia i spodnia)
+- Edytor schematÃ³w moÅ¼e stworzyÄ‡ jeden arkusz
 Aby uruchomic Eagle, potrzebny jest klucz licencyjny. Klucz licencyjny
-Freeware znajduje siê w katalogu:
+Freeware znajduje siÄ™ w katalogu:
 /usr/share/eagle-light/bin/
 
 %prep
