@@ -7,7 +7,7 @@
 # - Is banner in rpm needed to introduce how to run it?
 
 Summary:	Eagle Layout Editor
-Summary(pl.UTF-8):   Edytor płytek drukowanych Eagle
+Summary(pl.UTF-8):	Edytor płytek drukowanych Eagle
 Name:		eagle-light
 Version:	4.15
 Release:	0.1
