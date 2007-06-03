@@ -6,25 +6,26 @@
 # - add shortcut? to binary file 
 # - Is banner in rpm needed to introduce how to run it?
 
+%define	_beta	r2
 Summary:	Eagle Layout Editor
 Summary(pl.UTF-8):	Edytor płytek drukowanych Eagle
 Name:		eagle-light
-Version:	4.15
-Release:	0.1
+Version:	4.16
+Release:	0.%{_beta}.1
 License:	Freeware
 Group:		X11/Applications/Science
-Source0:	ftp://ftp.cadsoft.de/pub/program/%{version}/eagle-lin-eng-%{version}.tgz
-# Source0-md5:	b9a3ec50033785903cfccba86de0b367
-Source1:	ftp://ftp.cadsoft.de/pub/program/%{version}/manual-eng.pdf
+Source0:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/eagle-lin-eng-%{version}%{_beta}.tgz
+# Source0-md5:	9648bed26f901ea634a69d18b9c33dce
+Source1:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/manual-eng.pdf
 # Source1-md5:	1e85f214b4229023ec22167ee8c6b485
-Source2:	ftp://ftp.cadsoft.de/pub/program/%{version}/tutorial-eng.pdf
+Source2:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/tutorial-eng.pdf
 # Source2-md5:	9ed24f9106432f237d3991c291d95b04
 Source3:        %{name}.desktop
 URL:		http://www.cadsoft.de/freeware.htm/
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _eagledir %{_libdir}/%{name}-%{version}
+%define _eagledir %{_libdir}/%{name}-%{version}%{_beta}
 
 %description
 Eagle Layout Editor. Limitations:
@@ -44,7 +45,7 @@ Freeware znajduje się w katalogu:
 /usr/share/eagle-light/bin/
 
 %prep
-%setup -q -n eagle-lin-eng-%{version}
+%setup -q -n eagle-lin-eng-%{version}%{_beta}
 cp -f %{SOURCE1} %{SOURCE2} doc/
 
 %install
