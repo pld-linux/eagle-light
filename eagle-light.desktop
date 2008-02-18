@@ -2,7 +2,7 @@
 Name=Eagle Light
 Comment=Eagle Layout Editor
 Comment[pl]=Edytor p³ytek drukowanych Eagle
-Exec=eagle
+Exec=/usr/lib/eagle-light-4.16r2/bin/eagle
 Icon=eagle
 Terminal=false
 MultipleArgs=false
