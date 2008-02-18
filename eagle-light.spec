@@ -2,8 +2,6 @@
 # TODO:
 # - If you have any idea how to PLDize this program, do it:)
 # - in first run eagle.key should be writable for user
-# - add manual and tutorial to doc
-# - add shortcut? to binary file 
 # - Is banner in rpm needed to introduce how to run it?
 
 %define	_beta	r2
