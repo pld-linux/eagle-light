@@ -1,29 +1,29 @@
 
 # TODO:
 # - If you have any idea how to PLDize this program, do it:)
-# - in first run eagle.key should be writable for user
+# - in first run eagle.key should be writable for user or use 
+#   sudo /usr/lib/eagle-light/bin/eagle to change license
 # - Is banner in rpm needed to introduce how to run it?
 
-%define	_beta	r2
 Summary:	Eagle Layout Editor
 Summary(pl.UTF-8):	Edytor płytek drukowanych Eagle
 Name:		eagle-light
-Version:	4.16
-Release:	0.%{_beta}.1
+Version:	5.0.0
+Release:	0.8
 License:	Freeware
 Group:		X11/Applications/Science
-Source0:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/eagle-lin-eng-%{version}%{_beta}.tgz
-# Source0-md5:	9648bed26f901ea634a69d18b9c33dce
-Source1:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/manual-eng.pdf
-# Source1-md5:	1e85f214b4229023ec22167ee8c6b485
-Source2:	ftp://ftp.cadsoft.de/pub/program/%{version}%{_beta}/tutorial-eng.pdf
-# Source2-md5:	9ed24f9106432f237d3991c291d95b04
-Source3:        %{name}.desktop
+Source0:	ftp://ftp.cadsoft.de/pub/program/5.0/eagle-lin-%{version}.run
+# Source0-md5:	0a542e7187a0f8654a579e7c771cbb37
+Source1:	ftp://ftp.cadsoft.de/pub/program/5.0/elektro-tutorial.pdf
+# Source1-md5:	b17cf06236abf3057d27e0f883cdf4b2
+Source2:        %{name}.desktop
 URL:		http://www.cadsoft.de/freeware.htm/
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _eagledir %{_libdir}/%{name}-%{version}%{_beta}
+%define _eagledir %{_libdir}/eagle-light
+# binutils have problems to strip bin/eagle so need disable striping
+%define no_install_post_strip 1
 
 %description
 Eagle Layout Editor. Limitations:
@@ -43,48 +43,56 @@ Freeware znajduje się w katalogu:
 /usr/share/eagle-light/bin/
 
 %prep
-%setup -q -n eagle-lin-eng-%{version}%{_beta}
-cp -f %{SOURCE1} %{SOURCE2} doc/
+%setup -q -c -T
+
+sh %{SOURCE0} `pwd`
+mv -f eagle-%{version}/* .
+rm -rf eagle-%{version}
+
+cp -f %{SOURCE1} doc
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_eagledir}/{bin,cam,dru,lbr,projects/examples/{hexapod,singlesided,tutorial},scr,ulp} \
+
+install -d $RPM_BUILD_ROOT%{_eagledir}/{bin,cam,dru,lbr,projects,scr,ulp} \
 	$RPM_BUILD_ROOT%{_mandir}/man1 \
-	$RPM_BUILD_ROOT%{_bindir}  \
 	$RPM_BUILD_ROOT%{_pixmapsdir} \
 	$RPM_BUILD_ROOT%{_desktopdir}
 
-install man/eagle.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install bin/eagle $RPM_BUILD_ROOT%{_eagledir}/bin
-install bin/eagle.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
-install %{SOURCE3} $RPM_BUILD_ROOT%{_desktopdir}
-install bin/{eagle.def,freeware.key} $RPM_BUILD_ROOT%{_eagledir}/bin
+cp -af doc/eagle.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -af bin/eagle $RPM_BUILD_ROOT%{_eagledir}/bin
+cp -af bin/eagleicon50.png $RPM_BUILD_ROOT%{_pixmapsdir}/eagle.png
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+# some doc files must be in bin dir because eagle use them internaly
+cp -af bin/{eagle.def,freeware.key,platforms-*.png,*.qm,*.htm} $RPM_BUILD_ROOT%{_eagledir}/bin
 touch $RPM_BUILD_ROOT%{_eagledir}/bin/eagle.key
-install cam/* $RPM_BUILD_ROOT%{_eagledir}/cam
-install dru/* $RPM_BUILD_ROOT%{_eagledir}/dru
-install lbr/* $RPM_BUILD_ROOT%{_eagledir}/lbr
-install projects/DESCRIPTION $RPM_BUILD_ROOT%{_eagledir}/projects
-install projects/examples/hexapod/* $RPM_BUILD_ROOT%{_eagledir}/projects/examples/hexapod
-install projects/examples/singlesided/* $RPM_BUILD_ROOT%{_eagledir}/projects/examples/singlesided
-install projects/examples/tutorial/* $RPM_BUILD_ROOT%{_eagledir}/projects/examples/tutorial
-install scr/* $RPM_BUILD_ROOT%{_eagledir}/scr
-install ulp/* $RPM_BUILD_ROOT%{_eagledir}/ulp
+cp -arf cam/* $RPM_BUILD_ROOT%{_eagledir}/cam
+cp -arf dru/* $RPM_BUILD_ROOT%{_eagledir}/dru
+cp -arf lbr/* $RPM_BUILD_ROOT%{_eagledir}/lbr
+cp -arf projects/* $RPM_BUILD_ROOT%{_eagledir}/projects
+cp -arf scr/* $RPM_BUILD_ROOT%{_eagledir}/scr
+cp -arf ulp/* $RPM_BUILD_ROOT%{_eagledir}/ulp
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/UPDATE doc/library.txt README
+%doc doc/UPDATE_* doc/README_* doc/library_*.txt doc/*.pdf
 %{_mandir}/*
-%{_pixmapsdir}/*
+%{_pixmapsdir}/*.png
 %{_desktopdir}/*.desktop
+%dir %{_eagledir}
+%dir %{_eagledir}/bin
 %attr(755,root,root) %{_eagledir}/bin/eagle
 # I'm not sure that eagle.key should have 665 atributies
 #%attr(665,root,users)
 %{_eagledir}/bin/eagle.key
 %{_eagledir}/bin/freeware.key
 %{_eagledir}/bin/eagle.def
+%{_eagledir}/bin/*.png
+%{_eagledir}/bin/*.htm
+%lang(de) %{_eagledir}/bin/*_de.qm
 # - all files shuld be in folders ../ to eagle binary. Stupid :/
 %{_eagledir}/cam
 %{_eagledir}/dru
