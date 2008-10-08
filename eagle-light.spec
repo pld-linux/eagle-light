@@ -17,7 +17,7 @@ Source0:	ftp://ftp.cadsoft.de/pub/program/5.0/eagle-lin-%{version}.run
 Source1:	ftp://ftp.cadsoft.de/pub/program/5.0/elektro-tutorial.pdf
 # Source1-md5:	b17cf06236abf3057d27e0f883cdf4b2
 Source2:        %{name}.desktop
-URL:		http://www.cadsoft.de/freeware.htm/
+URL:		http://www.cadsoft.de/freeware.htm
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -63,7 +63,7 @@ cp -af doc/eagle.1 $RPM_BUILD_ROOT%{_mandir}/man1
 cp -af bin/eagle $RPM_BUILD_ROOT%{_eagledir}/bin
 cp -af bin/eagleicon50.png $RPM_BUILD_ROOT%{_pixmapsdir}/eagle.png
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
-# some doc files must be in bin dir because eagle use them internaly
+# some doc files must be in bin dir because eagle use them internally
 cp -af bin/{eagle.def,freeware.key,platforms-*.png,*.qm,*.htm} $RPM_BUILD_ROOT%{_eagledir}/bin
 touch $RPM_BUILD_ROOT%{_eagledir}/bin/eagle.key
 cp -arf cam/* $RPM_BUILD_ROOT%{_eagledir}/cam
@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_eagledir}
 %dir %{_eagledir}/bin
 %attr(755,root,root) %{_eagledir}/bin/eagle
-# I'm not sure that eagle.key should have 665 atributies
+# I'm not sure that eagle.key should have 665 atributtes
 #%attr(665,root,users)
 %{_eagledir}/bin/eagle.key
 %{_eagledir}/bin/freeware.key
@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_eagledir}/bin/*.png
 %{_eagledir}/bin/*.htm
 %lang(de) %{_eagledir}/bin/*_de.qm
-# - all files shuld be in folders ../ to eagle binary. Stupid :/
+# - all files should be in folders ../ to eagle binary. Stupid :/
 %{_eagledir}/cam
 %{_eagledir}/dru
 %{_eagledir}/lbr
