@@ -64,7 +64,7 @@ cp -af bin/eagle $RPM_BUILD_ROOT%{_eagledir}/bin
 cp -af bin/eagleicon50.png $RPM_BUILD_ROOT%{_pixmapsdir}/eagle.png
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 # some doc files must be in bin dir because eagle use them internally
-cp -af bin/{eagle.def,freeware.key,platforms-*.png,*.qm,*.htm} $RPM_BUILD_ROOT%{_eagledir}/bin
+cp -af bin/{eagle.def,freeware.key,*.png,*.qm,*.htm} $RPM_BUILD_ROOT%{_eagledir}/bin
 touch $RPM_BUILD_ROOT%{_eagledir}/bin/eagle.key
 cp -arf cam/* $RPM_BUILD_ROOT%{_eagledir}/cam
 cp -arf dru/* $RPM_BUILD_ROOT%{_eagledir}/dru
