@@ -8,13 +8,13 @@
 Summary:	Eagle Layout Editor
 Summary(pl.UTF-8):	Edytor płytek drukowanych Eagle
 Name:		eagle-light
-Version:	6.2.0
+Version:	6.3.0
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Science
-Source0:	ftp://ftp.cadsoft.de/eagle/program/6.2/eagle-lin-%{version}.run
-# Source0-md5:	f2d3cdb2d16089cfca8f87d34e9a081c
-Source1:	ftp://ftp.cadsoft.de/eagle/program/6.2/elektro-tutorial.pdf
+Source0:	ftp://ftp.cadsoft.de/eagle/program/latest/eagle-lin-%{version}.run
+# Source0-md5:	661defb4ae9531e829a96c9aaaa16b0e
+Source1:	ftp://ftp.cadsoft.de/eagle/program/latest/elektro-tutorial.pdf
 # Source1-md5:	4454bfbf5b6137d3bfb47a4cefde0630
 Source2:        %{name}.desktop
 URL:		http://www.cadsoft.de/freeware.htm
