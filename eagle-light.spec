@@ -17,6 +17,7 @@ Source0:	ftp://ftp.cadsoft.de/eagle/program/latest/eagle-lin32-%{version}.run
 Source1:        ftp://ftp.cadsoft.de/eagle/program/latest/eagle-lin64-%{version}.run
 # Source1-md5:	32af1a9e3af2a95121dc332a520e9486
 Source2:	ftp://ftp.cadsoft.de/eagle/program/latest/elektro-tutorial.pdf
+# Source2-md5:	4454bfbf5b6137d3bfb47a4cefde0630
 Source3:        %{name}.desktop
 URL:		http://www.cadsoft.de/freeware.htm
 ExclusiveArch:	%{ix86} %{x8664}
